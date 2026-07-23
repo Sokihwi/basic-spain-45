@@ -1,12 +1,15 @@
 # HOLA! 스페인어 기초강좌 — 45강 (Normal Basic)
 
 스페인·중남미 **8명의 원어민 선생님**이 분야별로 나눠, 각자 고향 억양으로 가르치는 스페인어 기초 45강.
-순수 HTML/CSS/Vanilla JS — 빌드·서버 없이 `index.html`을 브라우저로 열면 바로 실행됩니다.
+순수 HTML/CSS/Vanilla JS — 빌드·서버 없이 `site/index.html`을 브라우저로 열면 바로 실행됩니다.
 
 > 🟢 Normal / Basic · 전체 이용가 · 그린 테마 + 강사별 포인트색
 
 ## ▶️ 실행
-`index.html` 더블클릭 (또는 브라우저로 드래그).
+`site/index.html` 더블클릭 (또는 브라우저로 드래그).
+
+> 웹에 배포되는 실제 사이트 루트는 **`site/` 폴더**입니다. 저장소 루트의 문서(`README.md`·`work-logs/`)는 배포 범위 밖이라 웹에 노출되지 않습니다.
+> Vercel 설정: **Settings → Build and Deployment → Root Directory = `site`** (필수).
 
 ## 🛠️ 다시 빌드하기
 이 사이트는 상위 폴더 `../강의/NN_강사_주제.md` 스크립트에서 **자동 생성**됩니다.
@@ -21,16 +24,20 @@ python build_45.py
 
 ## 📂 구조
 ```
-Spain_45강/
-├─ index.html          # 허브 — 45강 그리드 + 8인 강사
-├─ personas.html       # 선생님 8명 카드
-├─ lessons/            # leccion-01 ~ 45.html (빌더 생성)
-├─ teachers/           # 강사 8인 자기소개 (assets/personas/*.md 에서 생성)
-├─ assets/
-│  ├─ style.css        # 공통 디자인 시스템 (그린 테마 + --accent)
-│  ├─ script.js        # .reveal 스크롤 애니메이션
-│  ├─ fonts/           # 오프라인 내장 폰트 (Pretendard 우선)
-│  └─ personas/        # 강사 프로필 png + 자기소개 md
+Basic_spain_45강/
+├─ site/                   # ⭐ 배포 루트 (Vercel Root Directory = site)
+│  ├─ index.html           # 허브 — 45강 그리드 + 8인 강사
+│  ├─ personas.html        # 선생님 8명 카드
+│  ├─ lessons/             # leccion-01 ~ 45.html (빌더 생성)
+│  ├─ teachers/            # 강사 8인 자기소개 (assets/personas/*.md 에서 생성)
+│  ├─ assets/
+│  │  ├─ style.css         # 공통 디자인 시스템 (그린 테마 + --accent)
+│  │  ├─ script.js         # .reveal 스크롤 애니메이션
+│  │  ├─ fonts/            # 오프라인 내장 폰트 (Pretendard 우선)
+│  │  └─ personas/         # 강사 프로필 png + 자기소개 md
+│  ├─ vercel.json
+│  └─ .vercelignore
+├─ work-logs/              # 작업일지 (배포 범위 밖)
 └─ README.md
 ```
 

@@ -1,0 +1,6 @@
+# 배포 루트는 이 site/ 폴더다. 내부 문서(CLAUDE/README/DESIGN/work-logs/.claude)는
+# 이미 상위 폴더에 있어 배포 범위 밖 → 여기서 제외할 필요 없음.
+#
+# site/ 안에 남은 것 중 웹에 노출하지 않을 소스만 제외한다.
+# 페르소나 원본 마크다운 (콘텐츠 소스, 런타임 미참조)
+assets/personas/*.md
