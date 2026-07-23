@@ -1,0 +1,596 @@
+/* ============================================================
+   HOLA! 스페인어 기초강좌 — Normal Version (Basic_spain)
+   Project Sophia Design System / 발렌티노 1:1 과외
+   ============================================================ */
+
+/* ---------- Fonts (오프라인 내장 · assets/fonts/) ---------- */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('fonts/InterVariable.woff2') format('woff2-variations');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('fonts/PlayfairDisplay.woff2') format('woff2-variations');
+}
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Common */
+  --dark: #121212;
+  --bg-2: #0d130e;
+  --card-bg: rgba(31, 40, 35, 0.45);
+  --text-main: #E0E0E0;
+  --text-bright: #ffffff;
+  --text-muted: #8b9a8e;
+
+  /* 🟢 Normal Theme (Romantic & Stable) */
+  --primary: #2E7D32;
+  --primary-light: #66bb6a;
+  --primary-soft: rgba(46, 125, 50, 0.14);
+  --badge-bg: #E8F5E9;
+  --badge-text: #1B5E20;
+  --accent-gold: #c8a24a;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(20, 26, 21, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.5);
+  --glass-blur: blur(16px) saturate(180%);
+
+  /* Fonts */
+  --font-ko: 'Pretendard', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-es: 'Inter', 'Pretendard', sans-serif;
+  --font-display: 'Playfair Display', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ko);
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(46,125,50,0.16), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(102,187,106,0.08), transparent 55%),
+    var(--dark);
+  color: var(--text-main);
+  line-height: 1.7;
+  overflow-x: hidden;
+  letter-spacing: -0.1px;
+}
+
+.es { font-family: var(--font-es); }
+
+/* ============================================================
+   HEADER / HERO
+   ============================================================ */
+header.hero {
+  position: relative;
+  text-align: center;
+  padding: clamp(48px, 9vw, 96px) 20px clamp(36px, 6vw, 64px);
+  border-bottom: 1px solid var(--glass-border);
+  background: linear-gradient(160deg, #0b0f0c 0%, #0f1a11 100%);
+  overflow: hidden;
+}
+header.hero::after {
+  content: "";
+  position: absolute; inset: auto 0 -1px 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.version-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 18px rgba(46, 125, 50, 0.35);
+}
+
+header.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--text-bright);
+  line-height: 1.15;
+}
+header.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--primary-light), var(--accent-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+header.hero .subtitle {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px) 20px 120px;
+}
+
+section.block {
+  margin-bottom: clamp(36px, 6vw, 60px);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  font-weight: 800;
+  color: var(--text-bright);
+  margin-bottom: 18px;
+  letter-spacing: -0.5px;
+}
+.section-title .ico {
+  font-size: 1.3em;
+  filter: drop-shadow(0 0 8px rgba(46,125,50,0.5));
+}
+.section-title small {
+  display: block;
+  font-size: 0.62em;
+  font-weight: 600;
+  color: var(--primary-light);
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   발렌티노 강사 말풍선 (Speech Bubble)
+   ============================================================ */
+.valentino {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin: 22px 0;
+}
+.valentino .avatar {
+  flex: 0 0 54px;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  background: linear-gradient(145deg, var(--primary), #1b5e20);
+  box-shadow: 0 6px 18px rgba(46,125,50,0.45), inset 0 0 0 2px rgba(255,255,255,0.15);
+}
+.valentino .bubble {
+  position: relative;
+  flex: 1;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--primary);
+  border-radius: 4px 16px 16px 16px;
+  padding: 16px 20px;
+  box-shadow: var(--glass-shadow);
+}
+.valentino .bubble::before {
+  content: "발렌티노";
+  position: absolute;
+  top: -10px; left: 14px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--primary-light);
+  background: var(--dark);
+  padding: 1px 8px;
+  border-radius: 99px;
+  letter-spacing: 0.5px;
+}
+.valentino .bubble p { margin: 0; }
+.valentino .bubble p + p { margin-top: 10px; }
+.valentino strong { color: var(--primary-light); font-weight: 700; }
+
+/* ============================================================
+   예문 카드 (스페인어 / 한국어 2단)
+   ============================================================ */
+.examples {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+.ex-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), border-color 0.3s, box-shadow 0.3s;
+}
+.ex-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(102,187,106,0.45);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+}
+.ex-card .es-line {
+  font-family: var(--font-es);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+.ex-card .es-line b { color: var(--primary-light); font-weight: 800; }
+.ex-card .ko-line {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+}
+.ex-card .note {
+  margin-top: 4px;
+  font-size: 0.86rem;
+  color: var(--accent-gold);
+  border-top: 1px dashed rgba(255,255,255,0.08);
+  padding-top: 8px;
+}
+
+/* ============================================================
+   ¡Ojo! 유의사항 박스 / 꿀팁 박스
+   ============================================================ */
+.callout {
+  position: relative;
+  background: var(--primary-soft);
+  border: 1px solid rgba(102,187,106,0.3);
+  border-radius: 14px;
+  padding: 18px 20px 18px 22px;
+  margin: 18px 0;
+}
+.callout.warn {
+  background: rgba(200, 162, 74, 0.10);
+  border-color: rgba(200,162,74,0.35);
+}
+.callout .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  color: var(--primary-light);
+}
+.callout.warn .label { color: var(--accent-gold); }
+.callout p { margin: 0; font-size: 0.96rem; }
+.callout .es { color: var(--text-bright); font-weight: 600; }
+
+/* ============================================================
+   문법 표 (보조용)
+   ============================================================ */
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.94rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.grammar-table th, .grammar-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+.grammar-table thead th {
+  background: rgba(46,125,50,0.25);
+  color: var(--text-bright);
+  font-weight: 700;
+}
+.grammar-table tbody tr:hover { background: rgba(255,255,255,0.03); }
+.grammar-table td.es, .grammar-table th.es {
+  font-family: var(--font-es);
+  color: var(--text-bright);
+  font-weight: 600;
+}
+.grammar-table b { color: var(--primary-light); }
+
+/* ============================================================
+   정리 박스
+   ============================================================ */
+.summary {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-top: 3px solid var(--primary);
+  border-radius: 16px;
+  padding: 24px 26px;
+  box-shadow: var(--glass-shadow);
+}
+.summary ul { list-style: none; }
+.summary li {
+  position: relative;
+  padding-left: 26px;
+  margin: 10px 0;
+  font-size: 0.98rem;
+}
+.summary li::before {
+  content: "✓";
+  position: absolute; left: 0; top: 0;
+  color: var(--primary-light);
+  font-weight: 900;
+}
+.summary li b { color: var(--primary-light); }
+
+/* ============================================================
+   차시 간 네비게이션
+   ============================================================ */
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+.lesson-nav a {
+  flex: 1 1 200px;
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  color: var(--text-main);
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.lesson-nav a:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+}
+.lesson-nav a.next { text-align: right; }
+.lesson-nav a span {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.lesson-nav a strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-bright);
+  font-size: 1rem;
+}
+.lesson-nav a.disabled { opacity: 0.35; pointer-events: none; }
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 24px 0 0;
+  color: var(--primary-light);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.home-link:hover { text-decoration: underline; }
+
+/* Top sticky bar */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(13, 19, 14, 0.82);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+}
+.topbar .brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-bright);
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+.topbar .brand em { color: var(--primary-light); font-style: normal; }
+.topbar .lesson-tag {
+  font-size: 0.8rem; font-weight: 700;
+  color: var(--primary-light);
+  background: var(--primary-soft);
+  padding: 4px 12px; border-radius: 99px;
+}
+
+/* ============================================================
+   허브(index) 전용
+   ============================================================ */
+.intro-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 40px;
+  box-shadow: var(--glass-shadow);
+}
+.intro-card .big-avatar {
+  flex: 0 0 84px;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 2.6rem;
+  background: linear-gradient(145deg, var(--primary), #1b5e20);
+  box-shadow: 0 8px 22px rgba(46,125,50,0.5), inset 0 0 0 2px rgba(255,255,255,0.15);
+}
+.intro-card h2 { color: var(--text-bright); font-size: 1.25rem; margin-bottom: 6px; }
+.intro-card p { color: var(--text-muted); font-size: 0.94rem; }
+.intro-card .es { color: var(--primary-light); font-weight: 600; }
+
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+.lesson-grid a {
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px;
+  color: var(--text-main);
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.lesson-grid a::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(46,125,50,0.0), rgba(46,125,50,0.12));
+  opacity: 0; transition: opacity 0.35s;
+}
+.lesson-grid a:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 18px 38px rgba(0,0,0,0.45); }
+.lesson-grid a:hover::before { opacity: 1; }
+.lesson-grid .num {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--primary-light);
+  line-height: 1;
+}
+.lesson-grid .l-title { font-weight: 800; color: var(--text-bright); font-size: 1.05rem; }
+.lesson-grid .l-desc { font-size: 0.84rem; color: var(--text-muted); }
+
+/* ============================================================
+   Entrance animation
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Footer ---------- */
+footer.site {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+/* ============================================================
+   45강 빌더 추가분 — 강사별 포인트색(--accent) · 목록 · 준비중 카드
+   (그린 테마 고정 · --accent 는 페이지별 <style> 에서 주입)
+   ============================================================ */
+:root { --accent: var(--primary-light); }
+
+/* 강사 포인트색을 입히는 지점 (배경·뱃지는 그린 유지) */
+.accent .valentino .bubble { border-left-color: var(--accent); }
+.accent .valentino .bubble::before { color: var(--accent); }
+.accent .valentino strong { color: var(--accent); }
+.accent .section-title small { color: var(--accent); }
+.accent .section-title .ico { filter: drop-shadow(0 0 8px var(--accent)); }
+.accent .callout .label { color: var(--accent); }
+.accent .summary li::before { color: var(--accent); }
+.accent .ex-card .es-line b { color: var(--accent); }
+
+/* 일반 목록 (md 의 - 항목) */
+.md-list { list-style: none; margin: 8px 0; }
+.md-list li {
+  position: relative;
+  padding-left: 20px;
+  margin: 8px 0;
+  font-size: 0.96rem;
+}
+.md-list li::before {
+  content: "•";
+  position: absolute; left: 4px; top: 0;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+/* 인용/속담 박스 */
+.quote-box {
+  border-left: 3px solid var(--accent);
+  background: var(--primary-soft);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 1rem;
+}
+.quote-box .src { color: var(--text-muted); font-size: 0.86rem; margin-top: 4px; }
+
+/* 허브 그리드 — 강사 칩 · 준비중 카드 */
+.lesson-grid .teacher-chip {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 6px; font-size: 0.76rem;
+  color: var(--accent, var(--primary-light)); font-weight: 700;
+}
+.lesson-grid .teacher-chip img {
+  width: 20px; height: 20px; border-radius: 50%;
+  object-fit: cover; object-position: center 20%;
+}
+.lesson-grid a.soon { opacity: 0.5; }
+.lesson-grid a.soon:hover { transform: none; border-color: var(--glass-border); box-shadow: none; }
+.lesson-grid a.soon:hover::before { opacity: 0; }
+.lesson-grid .soon-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 0.66rem; font-weight: 800;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--glass-border);
+  padding: 2px 8px; border-radius: 99px;
+}
+
+/* 페르소나 허브 카드 */
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+.persona-grid a {
+  text-decoration: none;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 22px;
+  color: var(--text-main);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.persona-grid a:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(0,0,0,0.45); }
+.persona-grid img {
+  width: 92px; height: 92px; border-radius: 50%;
+  object-fit: cover; object-position: center 18%;
+  border: 3px solid var(--pc, var(--primary));
+  box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+}
+.persona-grid .p-name { font-weight: 800; color: var(--text-bright); font-size: 1.1rem; }
+.persona-grid .p-origin { font-size: 0.82rem; color: var(--text-muted); }
+.persona-grid .p-lessons {
+  margin-top: 4px; font-size: 0.78rem; font-weight: 700;
+  color: var(--pc, var(--primary-light));
+}
